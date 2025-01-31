@@ -37,7 +37,7 @@ const Core = {
       <h1 style={Core}className="section-title">About <span>me</span></h1>
       <h2 style={Headera}>Front End Developer</h2>
       <p style={paragraphStyle}>I'm a web developer with a passion for creating interactive and user-friendly applications. With a strong foundation in HTML, CSS, JavaScript, and React, I enjoy building responsive websites that enhance user experiences. I constantly seek new challenges and opportunities to grow my skill set.</p>
-      <a href="./assets/pdf/resume.pdf" download className="cta">Download Resume</a>
+      <a href="https://drive.google.com/file/d/11TtuFY_7ukrCNhJV-4RWoj3-nwGgPhoP/view?usp=sharing" download className="cta">Download Resume</a>
     </div>
   </div>
  </section>
