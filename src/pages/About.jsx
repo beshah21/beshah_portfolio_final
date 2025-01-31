@@ -30,7 +30,7 @@ const Core = {
      <div className="about container">
        <div className="col-left">
         <div className="about-img">
-        <img src="/assets/img/Photo.jpg" alt="Beshah Ashenafi" />
+        <img src="./assets/img/Photo.jpg" alt="Beshah Ashenafi" />
         </div>
        </div>
     <div className="col-right">
