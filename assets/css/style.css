@@ -1,0 +1,904 @@
+@import 'https://fonts.googleapis.com/css?family=Montserrat:300, 400, 700&display=swap';
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+html {
+    font-size: 10px;
+    font-family: 'Montserrat', sans-serif;
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff; /* Example link color */
+}
+
+a:hover,
+a:focus {
+    text-decoration: underline; /* Underline on hover */
+    color: #0056b3; /* Darker shade on hover */
+}
+
+.container {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px; /* Added padding */
+}
+
+img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+p {
+    color: #333; /* Darker for better contrast */
+    font-size: 1.4rem;
+    margin-top: 5px;
+    line-height: 2.5rem;
+    font-weight: 300;
+    letter-spacing: 0.05rem;
+}
+
+.section-title {
+    font-size: 4rem; /* Consider adjusting for smaller screens */
+    font-weight: 600; /* Increased weight for better readability */
+    color: #333; /* Darker color for better contrast */
+    margin-bottom: 15px; /* Increased margin for spacing */
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    text-align: center;
+    line-height: 1.2; /* Improved line height for readability */
+}
+
+.section-title span {
+    color: crimson; /* Keep the accent color */
+}
+
+.cta {
+    display: inline-block;
+    padding: 12px 36px; /* Slightly increased padding for better touch target */
+    color: white;
+    background-color: transparent;
+    border: 2px solid crimson;
+    font-size: 2.2rem; /* Slightly larger font size for emphasis */
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    margin-top: 30px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Added transform for hover effect */
+}
+
+.cta:hover {
+    color: white;
+    background-color: crimson;
+    transform: scale(1.05); /* Slight scaling effect on hover for emphasis */
+}
+
+.brand h1 {
+    font-size: 3.5rem; /* Increased size for better visibility */
+    text-transform: uppercase;
+    color: white;
+    text-align: center; /* Center alignment for consistency */
+}
+
+.brand h1 span {
+    color: crimson; /* Keep the accent color */
+}
+
+/* Header section */
+#header {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: auto;
+    backdrop-filter: blur(10px); /* Added blur effect for better visual appeal */
+}
+
+#header .header {
+    min-height: 8vh;
+    background-color: rgba(31, 30, 30, 0.8); /* Increased opacity for better contrast */
+    transition: background-color 0.3s ease;
+}
+
+#header .nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    max-width: 1300px;
+    padding: 0 20px; /* Increased padding for larger touch target */
+}
+
+#header .nav-list ul {
+    list-style: none;
+    position: absolute;
+    background-color: rgba(31, 30, 30, 0.95); /* Slightly darker background for better contrast */
+    width: 100vw;
+    height: 100vh;
+    left: 100%;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    overflow-x: hidden;
+    transition: 0.5s ease left;
+}
+
+#header .nav-list ul.active {
+    left: 0%;
+}
+
+#header .nav-list ul a {
+    font-size: 2.5rem;
+    font-weight: 600; /* Increased weight for better readability */
+    letter-spacing: 0.2rem;
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    padding: 20px 30px; /* Added horizontal padding for better spacing */
+    display: block;
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+#header .nav-list ul a::after {
+    content: attr(data-after);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    color: rgba(240, 248, 255, 0.021);
+    font-size: 13rem;
+    letter-spacing: 50px;
+    z-index: -1;
+    transition: 0.3s ease letter-spacing;
+}
+
+#header .nav-list ul li:hover a::after {
+    transform: translate(-50%, -50%) scale(1);
+    letter-spacing: initial;
+}
+
+#header .nav-list ul li:hover a {
+    color: crimson; /* Keep hover color consistent */
+}
+
+#header .hamburger {
+    height: 60px;
+    width: 60px;
+    display: inline-block;
+    border: 3px solid white;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    cursor: pointer;
+    transform: scale(1); /* Adjusted scale for better touch target */
+    margin-right: 20px;
+    transition: transform 0.3s ease; /* Added transition for scaling */
+}
+
+#header .hamburger:hover {
+    transform: scale(1.1); /* Slight scale on hover for feedback */
+}
+
+#header .hamburger:after {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    border: 3px solid white;
+    animation: hamburger_puls 1s ease infinite;
+}
+
+#header .hamburger .bar {
+    height: 2px;
+    width: 30px;
+    position: relative;
+    background-color: white;
+    z-index: -1;
+}
+
+#header .hamburger .bar::after,
+#header .hamburger .bar::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    background-color: white;
+    transition: 0.3s ease;
+    transition-property: top, bottom;
+}
+
+#header .hamburger .bar::after {
+    top: 8px;
+}
+
+#header .hamburger .bar::before {
+    bottom: 8px;
+}
+
+#header .hamburger.active .bar::before {
+    bottom: 0;
+}
+
+#header .hamburger.active .bar::after {
+    top: 0;
+}
+/* End Header section */
+
+/* Hero Section */
+#hero {
+    background-image: url('./public/assets/img/bg.jpg');
+    background-size: cover;
+    background-position: top center;
+    position: relative;
+    z-index: 1;
+    min-height: 100vh; /* Full viewport height */
+    display: flex; /* Flexbox for alignment */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    text-align: center; /* Center text */
+    overflow: hidden; /* Prevent overflow of child elements */
+}
+
+#hero::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for contrast */
+    z-index: -1;
+}
+
+#hero .hero {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px; /* Responsive padding */
+}
+
+#hero h1 {
+    display: block;
+    font-size: 4rem; /* Professional font size */
+    line-height: 1.2; /* Improved line height for readability */
+    color: transparent; /* Start invisible for animation */
+    position: relative;
+    margin: 0; /* Remove default margin */
+    animation: text_reveal 0.5s ease forwards; /* Animation for text reveal */
+    animation-delay: 0.5s; /* Delay for staggered effect */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6); /* Subtle shadow for depth */
+}
+
+#hero h1:nth-child(1) {
+    animation-delay: 1s; /* Staggered delay */
+}
+
+#hero h1:nth-child(2) {
+    animation-delay: 1.5s; /* Staggered delay */
+}
+
+#hero h1:nth-child(3) {
+    animation: text_reveal_name 0.5s ease forwards; /* Unique animation for the third heading */
+    animation-delay: 2s; /* Staggered delay */
+}
+
+#hero h1 span {
+    position: relative; /* Position relative for underline */
+}
+
+#hero h1 span::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Position under the text */
+    height: 4px; /* Height of the underline */
+    width: 100%; /* Full width */
+    background-color: crimson; /* Accent color */
+    transform: scaleX(0); /* Start hidden */
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+
+#hero h1:hover span::after {
+    transform: scaleX(1); /* Show underline on hover */
+}
+
+/* Keyframes for animations */
+@keyframes text_reveal {
+    0% {
+        opacity: 0; /* Start invisible */
+        transform: translateY(20px); /* Move up slightly */
+    }
+    100% {
+        opacity: 1; /* Fade in */
+        transform: translateY(0); /* Return to original position */
+    }
+}
+
+@keyframes text_reveal_name {
+    0% {
+        opacity: 0; /* Start invisible */
+        transform: scale(0.8); /* Start slightly smaller */
+    }
+    100% {
+        opacity: 1; /* Fade in */
+        transform: scale(1); /* Scale to full size */
+    }
+}
+
+/* Additional styles for improved responsiveness */
+@media (max-width: 768px) {
+    #hero h1 {
+        font-size: 3rem; /* Responsive font size for smaller screens */
+    }
+}
+/* End Hero Section */
+
+/* Services Section */
+#services {
+    background-color: #f4f4f4; /* Light background for contrast */
+    padding: 100px 0; /* Top and bottom padding */
+}
+
+#services .services {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column;
+    text-align: center;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+#services .service-top {
+    max-width: 500px;
+    margin: 0 auto;
+    margin-bottom: 50px; /* Spacing below the top section */
+}
+
+#services .service-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+#services .service-item {
+    flex-basis: 80%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    padding: 30px;
+    border-radius: 10px;
+  
+    background-size: cover;
+    margin: 10px 5%;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effect */
+}
+
+#services .service-item:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+#services .service-item::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(60deg, rgba(41, 50, 60, 0.8) 0%, rgba(72, 86, 99, 0.8) 100%);
+    z-index: -1;
+}
+
+#services .service-bottom .icon {
+    height: 80px;
+    width: 80px;
+    margin-bottom: 20px;
+}
+
+#services .service-item h2 {
+    font-size: 2rem; /* Adjusted for prominence */
+    color: white;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px; /* Added letter spacing for a cleaner look */
+}
+
+#services .service-item p {
+    color: white;
+    text-align: left;
+    line-height: 1.5; /* Improved line height for readability */
+}
+
+/* End Services Section */
+
+/* Projects Section */
+#projects {
+    background-color: #f4f4f4; /* Light background for contrast */
+    padding: 100px 0; /* Top and bottom padding */
+}
+
+#projects .projects {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto; /* Center the section */
+}
+
+#projects .projects-header h1 {
+    margin-bottom: 50px;
+    font-size: 3rem; /* Larger heading for emphasis */
+    text-align: center; /* Center the header text */
+    color: #29323c; /* Darker color for contrast */
+}
+
+#projects .all-projects {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#projects .project-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 80%;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    transition: transform 0.3s ease; /* Smooth transition for hover effect */
+}
+
+#projects .project-item:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+}
+
+#projects .project-info {
+    padding: 30px;
+    flex-basis: 50%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+    color: white;
+    text-align: left; /* Left-align text for better readability */
+}
+
+#projects .project-info h1 {
+    font-size: 3rem; /* Reduced size for better hierarchy */
+    font-weight: 600; /* Increased weight for emphasis */
+    margin: 0; /* Reset margin */
+}
+
+#projects .project-info h2 {
+    font-size: 1.8rem; /* Subheading size */
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+#projects .project-info p {
+    color: white;
+    line-height: 1.6; /* Improved line height for readability */
+}
+
+#projects .project-img {
+    flex-basis: 50%;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+}
+
+#projects .project-img::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+    opacity: 0.7;
+}
+
+#projects .project-img img {
+    transition: transform 0.3s ease; /* Smooth transition for scaling */
+    width: 100%; /* Ensure the image fills the container */
+    height: auto; /* Maintain aspect ratio */
+}
+
+#projects .project-item:hover .project-img img {
+    transform: scale(1.1); /* Scale effect on hover */
+}
+
+/* End Projects Section */
+
+/* About Section */
+#about {
+    background-color: #f4f4f4; /* Light background for contrast */
+    padding: 100px 20px; /* Top and bottom padding */
+}
+
+#about .about {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column-reverse;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto; /* Center the section */
+}
+
+#about .col-left {
+    width: 250px;
+    height: 360px;
+    margin: 0 auto; /* Center the image column */
+}
+
+#about .col-right {
+    width: 100%;
+}
+
+#about .col-right h2 {
+    font-size: 2.2rem; /* Increased size for prominence */
+    font-weight: 600; /* Bolder weight for emphasis */
+    letter-spacing: 0.2rem; /* Maintain spacing */
+    margin-bottom: 15px; /* Increased margin for spacing */
+    color: white; /* Darker color for contrast */
+}
+
+#about .col-right p {
+    margin-bottom: 20px;
+    line-height: 1.6; /* Improved line height for readability */
+    color: white; /* Softer color for text */
+}
+
+#about .col-right .cta {
+    background-color: crimson; /* Button background color */
+    color: white; /* Button text color */
+    margin-bottom: 50px;
+    padding: 10px 20px;
+    font-size: 2rem;
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+#about .col-right .cta:hover {
+    background-color: #b30000; /* Darker shade on hover */
+}
+
+#about .col-left .about-img {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    border: 10px solid white; /* Outer white border */
+    border-radius: 10px; /* Rounded corners for the image */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0); /* Subtle shadow for depth */
+}
+
+#about .col-left .about-img::after {
+    content: '';
+    position: absolute;
+    left: -33px;
+    top: 19px;
+    height: 98%;
+    width: 98%;
+    border: 7px solid crimson; /* Inner crimson border */
+    z-index: -1;
+    border-radius: 10px; /* Match the border radius */
+}
+
+/* End About Section */
+
+/* Contact Section */
+#contact {
+    background-color: #f4f4f4; /* Light background for contrast */
+    padding: 100px 20px; /* Top and bottom padding */
+}
+
+#contact .contact {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto; /* Center the section */
+    width: 90%; /* Responsive width */
+}
+
+#contact .contact-items {
+    width: 100%; /* Full width for the items */
+}
+
+#contact .contact-item {
+    width: 80%;
+    padding: 30px; /* Consistent padding */
+    text-align: center;
+    border-radius: 10px;
+    margin: 30px auto; /* Center items with auto margins */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+#contact .contact-item:hover {
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+    transform: translateY(-5px); /* Lift effect on hover */
+}
+
+#contact .icon {
+    width: 70px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    color: crimson; /* Accent color for icons */
+}
+
+#contact .contact-info h1 {
+    font-size: 2.5rem; /* Main header size */
+    font-weight: 600; /* Increased weight for emphasis */
+    margin-bottom: 5px;
+    color: #29323c; /* Darker color for contrast */
+}
+
+#contact .contact-info h2 {
+    font-size: 1.3rem; /* Subheading size */
+    line-height: 2rem; /* Improved line height for readability */
+    font-weight: 500;
+    color: #555; /* Softer color for text */
+}
+
+/* End Contact Section */
+
+/* Footer */
+#footer {
+    background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+    padding: 50px 20px; /* Added padding for better spacing */
+    color: white; /* Default text color */
+}
+
+#footer .footer {
+    min-height: 200px;
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+}
+
+#footer h2 {
+    color: white;
+    font-weight: 600; /* Increased weight for prominence */
+    font-size: 2rem; /* Larger font size for emphasis */
+    letter-spacing: 0.1rem;
+    margin: 10px 0; /* Combined margin for cleaner spacing */
+}
+
+#footer .social-icon {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+#footer .social-item {
+    height: 50px;
+    width: 50px;
+    margin: 0 10px; /* Slightly increased margin for better spacing */
+}
+
+#footer .social-item img {
+    filter: grayscale(1);
+    transition: filter 0.3s ease, transform 0.3s ease; /* Added transform for hover effect */
+}
+
+#footer .social-item:hover img {
+    filter: grayscale(0);
+    transform: scale(1.1); /* Slightly scale up on hover for emphasis */
+}
+
+#footer p {
+    color: white;
+    font-size: 1.3rem;
+    text-align: center; /* Center-align text for better layout */
+    margin-top: 10px; /* Added margin for spacing */
+}
+
+/* End Footer */
+
+/* Keyframes */
+@keyframes hamburger_puls {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.4);
+    }
+}
+
+@keyframes text_reveal_box {
+    50% {
+        width: 100%;
+        left: 0;
+    }
+    100% {
+        width: 0;
+        left: 100%;
+    }
+}
+
+@keyframes text_reveal {
+    100% {
+        color: white;
+    }
+}
+
+@keyframes text_reveal_name {
+    100% {
+        color: crimson;
+        font-weight: 500;
+    }
+}
+/* End Keyframes */
+
+/* Media Query For Tablet */
+@media only screen and (min-width: 768px) {
+    .cta {
+        font-size: 2.5rem;
+        padding: 20px 60px;
+    }
+
+    h1.section-title {
+        font-size: 6rem;
+    }
+
+    /* Hero */
+    #hero h1 {
+        font-size: 7rem;
+    }
+
+    /* Services Section */
+    #services .service-bottom .service-item {
+        flex-basis: 45%;
+        margin: 2.5%;
+    }
+
+    /* Project Section */
+    #projects .project-item {
+        flex-direction: row;
+        height: 400px;
+        margin: 0;
+        width: 100%;
+        border-radius: 0;
+    }
+
+    #projects .project-item:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+
+    #projects .all-projects .project-info,
+    #projects .all-projects .project-img {
+        height: 100%;
+    }
+
+    /* About Section */
+    #about .about {
+        flex-direction: row;
+    }
+
+    #about .col-left {
+        width: 600px;
+        height: 400px;
+        padding-left: 60px;
+    }
+
+    #about .about .col-left .about-img::after {
+        left: -45px;
+        top: 34px;
+        height: 98%;
+        width: 98%;
+        border: 10px solid crimson;
+    }
+
+    #about .col-right {
+        text-align: left;
+        padding: 30px;
+    }
+
+    #about .col-right h1 {
+        text-align: left;
+    }
+
+    /* Contact Section */
+    #contact .contact {
+        flex-direction: column;
+        padding: 100px 0;
+        align-items: center;
+        justify-content: center;
+        min-width: 20vh;
+    }
+
+    #contact .contact-items {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        margin: 0;
+    }
+
+    #contact .contact-item {
+        width: 30%;
+        margin: 0;
+        flex-direction: row;
+    }
+
+    #contact .contact-item .icon {
+        height: 100px;
+        width: 100px;
+    }
+
+    #contact .contact-item .icon img {
+        object-fit: contain;
+    }
+
+    #contact .contact-item .contact-info {
+        width: 100%;
+        text-align: left;
+        padding-left: 20px;
+    }
+}
+/* End Media Query For Tablet */
+
+/* Media Query For Desktop */
+@media only screen and (min-width: 1200px) {
+    /* Header */
+    #header .hamburger {
+        display: none;
+    }
+
+    #header .nav-list ul {
+        position: initial;
+        display: block;
+        height: auto;
+        width: fit-content;
+        background-color: transparent;
+    }
+
+    #header .nav-list ul li {
+        display: inline-block;
+    }
+
+    #header .nav-list ul li a {
+        font-size: 1.8rem;
+    }
+
+    #header .nav-list ul a:after {
+        display: none;
+    }
+
+    /* Services Section */
+    #services .service-bottom .service-item {
+        flex-basis: 22%;
+        margin: 1.5%;
+    }
+}
+/* End Media Query For Desktop */
