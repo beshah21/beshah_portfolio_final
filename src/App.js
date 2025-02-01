@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import About from './pages/About.jsx';
 import Contact from './pages/Contact.jsx';
 import Footer from './pages/Footer.jsx';
@@ -10,7 +10,7 @@ import Services from './pages/Services.jsx';
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Header style={{ paddingTop: '80px', paddingBottom: '80px' }}/>
       <Routes>
         <Route path='/' element={<Hero />} /> {/* Default route */}
@@ -22,7 +22,7 @@ function App() {
         <Route path='/Services' element={<Services />} />
       </Routes>
       <Footer />
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
